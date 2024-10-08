@@ -78,6 +78,7 @@
           </div>
         </div>
       </div>
+
       <div class="index-moudle show-list">
         <features
           :name="$t('index.legal-offices.intro')"
@@ -114,6 +115,14 @@
             </ul>
           </template>
         </features>
+      </div>
+      <div>
+        <Adsense
+          data-ad-client="ca-pub-9517603558485071"
+          data-ad-slot="lawyeroncloud092701"
+          data-ad-format="auto"
+          style="display: block"
+        />
       </div>
       <div class="index-moudle newMessage">
         <features
@@ -167,9 +176,18 @@
             </ul>
           </template>
         </features>
+
         <router-link to="/post/category/ALL" tag="div" class="newMessage-more">
           {{ $t("index.free.moreButton") }}
         </router-link>
+      </div>
+      <div>
+        <Adsense
+          data-ad-client="ca-pub-9517603558485071"
+          data-ad-slot="lawyeroncloud092702"
+          data-ad-format="auto"
+          style="display: block"
+        />
       </div>
       <div class="index-moudle friend">
         <features
@@ -193,6 +211,14 @@
             </ul>
           </template>
         </features>
+      </div>
+      <div>
+        <Adsense
+          data-ad-client="ca-pub-9517603558485071"
+          data-ad-slot="lawyeroncloud092703"
+          data-ad-format="auto"
+          style="display: block"
+        />
       </div>
       <div class="index-moudle qa">
         <features
@@ -265,7 +291,7 @@
                   <!--              </el-select>-->
                   <el-input
                     v-model="qaValue"
-                    placeholder="请输入内容"
+                    placeholder="Enter your legal issue here"
                   ></el-input>
                   <div class="select-search gcse-search" @click="searchQaFn()">
                     {{ $t("index.header.search") }}
@@ -276,11 +302,20 @@
           </div>
         </features>
       </div>
+      <div>
+        <Adsense
+          data-ad-client="ca-pub-9517603558485071"
+          data-ad-slot="lawyeroncloud092701"
+          data-ad-format="auto"
+          style="display: block"
+        />
+      </div>
       <footer-com></footer-com>
     </div>
   </div>
 </template>
 <script async src="https://cse.google.com/cse.js?cx=b255110edc44844bc"></script>
+
 <script>
 import { allList } from "./js/index.js";
 
