@@ -1,12 +1,5 @@
 <template>
   <div id="showList">
-    <message-aside
-      :newsUrl="newsUrl"
-      :msg-list="msgList"
-      :isSelectObj="isSelectObj"
-      @liActive="liActiveFn"
-      @selectChange="selectChangeFn"
-    ></message-aside>
     <div class="livePlay">
       <div class="content">
         <el-breadcrumb>
@@ -68,6 +61,13 @@
         </div>
       </div>
     </div>
+    <message-aside
+      :newsUrl="newsUrl"
+      :msg-list="msgList"
+      :isSelectObj="isSelectObj"
+      @liActive="liActiveFn"
+      @selectChange="selectChangeFn"
+    ></message-aside>
   </div>
 </template>
 
@@ -422,7 +422,7 @@ export default {
     padding: 40px 15px;
   }
   @media screen and (max-width: 800px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     .livePlay-title {
       margin: 20px 0;
     }

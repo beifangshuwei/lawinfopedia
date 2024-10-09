@@ -369,11 +369,11 @@ export default {
 <style lang="less">
 @media screen and (max-width: 1000px) {
   .typeList .qaList .qa-item {
-    width: 100%;
-    float: none;
+    width: 100% !important;
+    float: none !important;
   }
   .typeList .qaList .qa-item:nth-of-type(even) {
-    margin-left: 0%;
+    margin-left: 0% !important;
   }
   #newsContent {
     flex-direction: column-reverse;

@@ -215,7 +215,10 @@ export default {
   justify-content: center;
   padding: 40px 0;
   text-align: left;
-
+  .aside[data-v-31936c22] {
+    margin-left: 40px;
+    margin-right: 0px;
+  }
   .liveTitle {
     position: relative;
     width: 100%;
@@ -481,6 +484,10 @@ export default {
     padding: 40px 15px;
   }
   @media screen and (max-width: 800px) {
+    .aside[data-v-31936c22] {
+      margin-left: 0px !important;
+      margin-right: 0px;
+    }
     .typeList .qaList .qa-item {
       width: 100%;
       float: none;
@@ -488,7 +495,7 @@ export default {
     .typeList .qaList .qa-item:nth-of-type(even) {
       margin-left: 0%;
     }
-    flex-direction: column-reverse;
+    flex-direction: column;
     .typeList .qaList .qa-item img[data-v-4514bbe6] {
       width: 140px;
     }

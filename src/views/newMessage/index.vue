@@ -3,19 +3,28 @@
     <div>
       <div class="newMessage-container">
         <div class="News">
-
-          <message-aside :li-list="liList" :liChoose="this.$route.params.name" :msg-list="msgList" @liActive="liActive"></message-aside>
           <div class="new-con">
             <div class="new-con-lists">
-            <features
-              name=""
-              :title="$t(`breadcrumb.${this.$route.params.type.replace(/-/g, ' ')}.title`)"
-              bottompx="40px"
-            >
-              <template v-slot:one>
-                <newmessage :newsList="newMessageList.newsList" :read="true" @newMessage="newMessage"></newmessage>
-              </template>
-            </features>
+              <features
+                name=""
+                :title="
+                  $t(
+                    `breadcrumb.${this.$route.params.type.replace(
+                      /-/g,
+                      ' '
+                    )}.title`
+                  )
+                "
+                bottompx="40px"
+              >
+                <template v-slot:one>
+                  <newmessage
+                    :newsList="newMessageList.newsList"
+                    :read="true"
+                    @newMessage="newMessage"
+                  ></newmessage>
+                </template>
+              </features>
             </div>
             <el-pagination
               background
@@ -23,90 +32,102 @@
               :current-page.sync="pageNo"
               :page-size="pageSize"
               layout="pager"
-              :total="total">
+              :total="total"
+            >
             </el-pagination>
           </div>
-          <message-aside class="min800" :li-list="liList" @liActive="liActive"></message-aside>
+          <message-aside
+            :li-list="liList"
+            :liChoose="this.$route.params.name"
+            :msg-list="msgList"
+            @liActive="liActive"
+          ></message-aside>
+          <message-aside
+            class="min800"
+            :li-list="liList"
+            @liActive="liActive"
+          ></message-aside>
         </div>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
-
-import { newMessageList } from './js/index'
-import { getPetArticleList } from '@/libs/utils'
-import { petArticleType, getArticle } from '@/api/index'
-import Newmessage from '../../components/moudle/newmessage.vue'
-import features from '../../components/features/features.vue'
-import messageAside from 'comps/messageAside/messageAside.vue'
-import SvgIcon from 'comps/SvgIcon/index.vue'
+import { newMessageList } from "./js/index";
+import { getPetArticleList } from "@/libs/utils";
+import { petArticleType, getArticle } from "@/api/index";
+import Newmessage from "../../components/moudle/newmessage.vue";
+import features from "../../components/features/features.vue";
+import messageAside from "comps/messageAside/messageAside.vue";
+import SvgIcon from "comps/SvgIcon/index.vue";
 
 export default {
   components: {
     SvgIcon,
     features,
     Newmessage,
-    messageAside
+    messageAside,
   },
-  data () {
+  data() {
     return {
-      select: '最新动态',
-      msg: '',
+      select: "最新动态",
+      msg: "",
       newMessageList,
-      newsUrl: 'news',
-      liActiveItem: { label: '' },
+      newsUrl: "news",
+      liActiveItem: { label: "" },
       liList: [
         {
-          name: 'All',
-          label: 'Pro Bono Services',
-          num: 100
-        }, {
-          name: 'All',
-          label: 'Unemployment Benefits',
-          num: 100
-        }, {
-          name: 'All',
-          label: 'Retaining a Lawyer',
-          num: 100
-        }, {
-          name: 'All',
-          label: 'ACLU',
-          num: 100
-        }, {
-          name: 'All',
-          label: 'Types of Lawyers',
-          num: 100
-        }
-
+          name: "All",
+          label: "Pro Bono Services",
+          num: 100,
+        },
+        {
+          name: "All",
+          label: "Unemployment Benefits",
+          num: 100,
+        },
+        {
+          name: "All",
+          label: "Retaining a Lawyer",
+          num: 100,
+        },
+        {
+          name: "All",
+          label: "ACLU",
+          num: 100,
+        },
+        {
+          name: "All",
+          label: "Types of Lawyers",
+          num: 100,
+        },
       ],
       msgList: [
         {
-          img: '',
-          title: '10 Most Popular Dog Breeds in 2024'
+          img: "",
+          title: "10 Most Popular Dog Breeds in 2024",
         },
         {
-          img: '',
-          title: '10 Most Popular Dog Breeds in 2024'
-        }
+          img: "",
+          title: "10 Most Popular Dog Breeds in 2024",
+        },
       ],
       pageNo: 1,
       pageSize: 12,
-      total: 0
-    }
+      total: 0,
+    };
   },
   watch: {
-    $route (to, from) {
-      this.newsUrl = to.name
-    }
+    $route(to, from) {
+      this.newsUrl = to.name;
+    },
   },
-  async mounted () {
-    this.newsUrl = this.$route.name
-    this.getArticleFn()
+  async mounted() {
+    this.newsUrl = this.$route.name;
+    this.getArticleFn();
     // this.petArticleTypeFn()
-    this.msgList = await getPetArticleList()
+    this.msgList = await getPetArticleList();
   },
   methods: {
     // petArticleTypeFn () {
@@ -115,43 +136,46 @@ export default {
     //     this.getArticleFn()
     //   })
     // },
-    getArticleFn () {
+    getArticleFn() {
       getArticle({
-        label: this.$route.params.type === 'ALL' ? null : this.$route.params.type.replace(/-/g, ' '),
+        label:
+          this.$route.params.type === "ALL"
+            ? null
+            : this.$route.params.type.replace(/-/g, " "),
         type: 2,
         pageNo: this.pageNo,
-        pageSize: this.pageSize
-      }).then(res => {
-        this.newMessageList.newsList = res.data.lawyerArticleTypeDTOList
+        pageSize: this.pageSize,
+      }).then((res) => {
+        this.newMessageList.newsList = res.data.lawyerArticleTypeDTOList;
         // this.total = res.data.count
-      })
+      });
     },
-    handleCurrentChange (num) {
-      this.pageNo = num
-      this.getArticleFn()
+    handleCurrentChange(num) {
+      this.pageNo = num;
+      this.getArticleFn();
     },
-    searchMsg () {
-      this.getArticleFn()
+    searchMsg() {
+      this.getArticleFn();
     },
-    liActive (item) {
-      this.liActiveItem = item
+    liActive(item) {
+      this.liActiveItem = item;
 
       this.$router.push({
-        path: '/post/category/' + item.label.replace(/ /g, '-')
-      })
+        path: "/post/category/" + item.label.replace(/ /g, "-"),
+      });
       // this.getArticleFn()
     },
 
-    newMessage (item) {
+    newMessage(item) {
       // console.log(item)
       this.$router.push({
         // name: 'newsContent',
         path: `/news/content/${item.uid}`,
         // query: { newsId: item.id }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -179,9 +203,13 @@ export default {
     .new-con {
       flex: 1;
 
-.new-con-lists{
-  margin-bottom: 20px;
-}
+      .new-con-lists {
+        margin-bottom: 20px;
+      }
+    }
+    .aside[data-v-31936c22] {
+      margin-left: 40px;
+      margin-right: 0px;
     }
   }
 
@@ -209,24 +237,23 @@ export default {
       padding: 40px 15px;
     }
   }
-
-
 }
 </style>
 <style lang="less">
 #newMessage {
   @media screen and (max-width: 800px) {
     .News {
-      flex-direction: column-reverse;
-
+      flex-direction: column;
+      .aside[data-v-31936c22] {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+      }
       .min800 {
-        display: block;
+        display: none;
         margin-top: 0 !important;
 
         .aside-div {
           margin-bottom: 10px !important;
-
-
         }
 
         .aside-filter {
@@ -270,7 +297,5 @@ export default {
     border-spacing: 0;
     margin-top: 40px;
   }
-
 }
-
 </style>

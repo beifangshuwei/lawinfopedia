@@ -80,12 +80,7 @@
         <!--        </el-checkbox-group>-->
       </div>
     </div>
-    <div class="aside-msg aside-div">
-      <h1>Pro Bono & Offices</h1>
-      <div v-for="(item, index) in prolist" :key="index" class="pro-item">
-        <router-link :to="item.path" tag="span"> {{ item.name }} </router-link>
-      </div>
-    </div>
+
     <div class="aside-msg aside-div" v-if="msgList">
       <h1>{{ $t("aside.msg") }}</h1>
       <div
@@ -127,6 +122,12 @@
             <span>{{ item.age }}</span> <span>{{ item.size }}</span>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="aside-msg aside-div">
+      <h1>Pro Bono & Offices</h1>
+      <div v-for="(item, index) in prolist" :key="index" class="pro-item">
+        <router-link :to="item.path" tag="span"> {{ item.name }} </router-link>
       </div>
     </div>
   </div>
@@ -241,7 +242,7 @@ export default {
 </script>
 <style scoped lang="less">
 .aside {
-  margin-right: 40px;
+  margin-left: 40px;
   text-align: left;
   max-width: 320px;
 
@@ -380,6 +381,7 @@ export default {
   .aside {
     max-width: 100%;
     margin-right: 0;
+    margin-left: 0;
     margin-top: 28px;
 
     .aside-div {

@@ -78,6 +78,10 @@ export default {
 #search {
   @media screen and (max-width: 800px) {
     flex-direction: column;
+    .aside[data-v-31936c22] {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
   }
   display: flex;
   justify-content: center;

@@ -1,9 +1,5 @@
 <template>
   <div id="newsContent">
-    <div>
-      <message-aside :msg-list="msgList"></message-aside>
-
-    </div>
     <div class="center">
       <!--      <div class="url">-->
       <!--        <span>当前位置：</span>-->
@@ -14,106 +10,86 @@
       <!--        </el-breadcrumb>-->
       <!--      </div>-->
       <div class="contentTxt">
-
         <div class="title">
           {{ newMessage.title }}
         </div>
         <div class="info">
-                    <span
-                      class="auto"
-                    > {{ newMessage?.label }}</span>
-          <span
-            class="time"
-            v-if="newMessage.publishedOn"
-          > {{ newMessage.publishedOn }}</span>
+          <span class="auto"> {{ newMessage?.label }}</span>
+          <span class="time" v-if="newMessage.publishedOn">
+            {{ newMessage.publishedOn }}</span
+          >
         </div>
         <!-- <div class="summary" v-if="newMessage.summary">
         摘要
       </div> -->
-        <div
-          class="lianjie"
-          v-if="newMessage.overview"
-        >
+        <div class="lianjie" v-if="newMessage.overview">
           {{ newMessage.overview }}
         </div>
-        <div
-          class="vedio"
-          v-if="newMessage.img"
-        >
-          <img :src="newMessage.img" alt="" srcset="">
+        <div class="vedio" v-if="newMessage.img">
+          <img :src="newMessage.img" alt="" srcset="" />
         </div>
-        <div
-
-          :class=" newMessage.smallPic?'smallPic':''"
-        >
-          <div
-            class="sconcent"
-            ref="sconcent"
-            v-html="newMessage.text"
-          >
+        <div :class="newMessage.smallPic ? 'smallPic' : ''">
+          <div class="sconcent" ref="sconcent" v-html="newMessage.text">
             <!--            {{ newMessage.text }}-->
           </div>
         </div>
-
       </div>
+    </div>
+    <div>
+      <message-aside :msg-list="msgList"></message-aside>
     </div>
   </div>
 </template>
 
 <script>
-
-import newmessage from '../../components/moudle/newmessage.vue'
-import UseProducts from '../../components/moudle/useProducts.vue'
-import { getPetArticleList} from '@/libs/utils.js'
-import { produceList } from '@/libs/common.js'
-import { petArticle } from '@/api/index'
+import newmessage from "../../components/moudle/newmessage.vue";
+import UseProducts from "../../components/moudle/useProducts.vue";
+import { getPetArticleList } from "@/libs/utils.js";
+import { produceList } from "@/libs/common.js";
+import { petArticle } from "@/api/index";
 
 export default {
   components: {
     newmessage,
 
-    UseProducts
+    UseProducts,
   },
-  name: 'newsContent',
-  data () {
+  name: "newsContent",
+  data() {
     return {
       newsId: null,
       newMessage: {},
       msgList: [],
 
       produceList,
-      mouseindex: null
-    }
+      mouseindex: null,
+    };
   },
-  async mounted () {
+  async mounted() {
     // console.log(this.$route)
-    this.newsId = this.$route.params.id
-    this.getPetArticleFn()
-    this.msgList = await getPetArticleList()
+    this.newsId = this.$route.params.id;
+    this.getPetArticleFn();
+    this.msgList = await getPetArticleList();
   },
   methods: {
-    getPetArticleFn () {
-      petArticle({ id: this.newsId }
-      ).then(res => {
+    getPetArticleFn() {
+      petArticle({ id: this.newsId }).then((res) => {
         // console.log(res)
-        this.newMessage = res.data
-
-      })
+        this.newMessage = res.data;
+      });
     },
 
-    getMeassageContent () {
+    getMeassageContent() {
       // this.newMessage = this.newMessageList[this.newsId]
-    }
-    ,
-    mouseover (item, index) {
-      fangdou(((this.mouseindex = index), (this.mouseName = item)), 1000)
-    }
-    ,
-    mouseout (item, index) {
-      fangdou(((this.mouseName = ''), (this.mouseindex = '')), 1000)
-    }
-  }
-}
+    },
+    mouseover(item, index) {
+      fangdou(((this.mouseindex = index), (this.mouseName = item)), 1000);
+    },
+    mouseout(item, index) {
+      fangdou(((this.mouseName = ""), (this.mouseindex = "")), 1000);
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -122,12 +98,12 @@ export default {
   justify-content: center;
   line-height: 1;
   padding-top: 40px;
-  width: 100%;
+  // width: 100%;
 
   .center {
     text-align: left;
     width: 100%;
-    max-width: 1300px;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,7 +126,6 @@ export default {
     }
 
     .title {
-
       line-height: 60px;
       font-size: 44px;
       font-weight: 500;
@@ -288,12 +263,12 @@ export default {
       }
     }
 
-     .sconcent {
+    .sconcent {
       line-height: 1.5;
       font-size: 18px;
 
-      p:not([class*=c-]) {
-        letter-spacing: -.014em;
+      p:not([class*="c-"]) {
+        letter-spacing: -0.014em;
         margin-bottom: 1.3em;
         margin-top: 1.3em;
       }
@@ -307,38 +282,36 @@ export default {
           }
         }
       }
-
     }
   }
 }
 
 @media screen and (max-width: 1000px) {
   #newsContent {
-    flex-direction:  column-reverse;
+    flex-direction: column;
     padding: 40px 15px;
     //img{
     //  w
     //}
-    .title{
+    .title {
       font-size: 24px !important;
       line-height: 30px !important;
     }
-    .lianjie{
+    .lianjie {
       font-size: 16px !important;
       line-height: 24px !important;
       text-align: left !important;
     }
-    .center{
-      .sconcent{
+    .center {
+      .sconcent {
         line-height: 1.4;
-        section{
-          h3{
+        section {
+          h3 {
             font-size: 24px;
             line-height: 30px;
           }
         }
       }
-
     }
     .article_content {
       p {
@@ -351,43 +324,39 @@ export default {
 }
 </style>
 <style lang="less">
-#newsContent{
-  h3{
- font-size: 24px;
+#newsContent {
+  h3 {
+    font-size: 24px;
     margin: 10px 0;
   }
-  h4{
+  h4 {
     font-size: 20px;
-    margin:6px 0;
+    margin: 6px 0;
   }
 }
 @media screen and (max-width: 1000px) {
   #newsContent {
-    .center{
-      .sconcent{
+    .center {
+      .sconcent {
         line-height: 1.4;
-        section{
-          h3{
+        section {
+          h3 {
             font-size: 20px;
             line-height: 30px;
             margin: 20px 0 16px;
           }
-          p{
+          p {
             font-size: 16px;
           }
-          h4{
+          h4 {
             font-size: 16px;
             margin: 10px 0 8px;
           }
         }
       }
-
     }
-
   }
 }
-
 </style>
 <style lang="less">
-
 </style>
