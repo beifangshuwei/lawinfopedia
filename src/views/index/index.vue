@@ -82,7 +82,7 @@
       <div class="index-moudle show-list">
         <features
           :name="$t('index.legal-offices.intro')"
-          url="/"
+          url=""
           :title="$t('index.legal-offices.title')"
         >
           <template v-slot:two>

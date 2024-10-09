@@ -11,7 +11,7 @@
           </router-link>
         </div>
         <div class="aside-tool-con">
-          <router-link to="/news">
+          <router-link to="/post/category/ALL">
             <div class="aside-tool-item">
               <span class="tool-text"> {{ $t("menu.menu1.title") }} </span>
             </div>
